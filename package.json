@@ -7,8 +7,7 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "browser": {
-    "underscore": "backbone/node_modules/underscore",
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+    "underscore": "backbone/node_modules/underscore"
   },
   "browserify": {
     "transform": [
@@ -19,7 +18,6 @@
   },
   "browserify-shim": {
     "plugin": {
-      "exports": "plugin",
       "depends": [
         "jquery:$"
       ]
