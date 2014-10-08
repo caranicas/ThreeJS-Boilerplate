@@ -12,4 +12,4 @@ Starting point for Three JS App.
 -- Todo
 
 - Add canonical pathing for browserify modules.
-- Ingegrate [PhysiJS](https://github.com/chandlerprall/Physijs)
+- Integrate [PhysiJS](https://github.com/chandlerprall/Physijs)
