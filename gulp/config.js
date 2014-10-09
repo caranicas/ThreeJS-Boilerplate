@@ -1,5 +1,5 @@
 var dest = "./build";
-var src = './src';
+var src = './app';
 
 module.exports = {
   browserSync: {
@@ -35,11 +35,11 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: './src/javascript/app.coffee',
+      entries: './app/scripts/site/app.coffee',
       dest: dest+'/scripts',
       outputName: 'app.js'
     }, {
-      entries: './src/javascript/head.coffee',
+      entries: './app/scripts/site/head.coffee',
       dest: dest+'/scripts',
       outputName: 'head.js'
     }]
