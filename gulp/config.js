@@ -38,10 +38,6 @@ module.exports = {
       entries: './app/scripts/site/app.coffee',
       dest: dest+'/scripts',
       outputName: 'app.js'
-    }, {
-      entries: './app/scripts/site/head.coffee',
-      dest: dest+'/scripts',
-      outputName: 'head.js'
     }]
   }
 };
