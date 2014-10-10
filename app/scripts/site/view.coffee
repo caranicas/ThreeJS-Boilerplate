@@ -5,10 +5,9 @@
 # @constructor
 #
 ###
-_          = require 'underscore'
+#_          = require 'underscore'
 Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
-
 Demo = require './demo.coffee'
 
 module.exports = Backbone.View.extend
@@ -18,6 +17,5 @@ module.exports = Backbone.View.extend
     @render()
 
   render: ->
-    @$el.html @template
     Demo.threeInit()
     Demo.loop()

@@ -1,4 +1,4 @@
-THREE = require 'three'
+THREE = require 'threejs'
 $ = require 'jquery'
 
 class Demo
@@ -11,6 +11,7 @@ class Demo
   __initScene: ->
     @scene = new THREE.Scene()
     webcan = $('#webgl-canvas')[0];
+    console.log 'scene canvas', webcan
     @renderer = new THREE.WebGLRenderer({canvas:webcan})
     @renderer.setSize( window.innerWidth, window.innerHeight )
 

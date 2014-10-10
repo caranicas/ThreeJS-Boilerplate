@@ -30,8 +30,8 @@ module.exports = {
     // Enable source maps
     debug: true,
     // Additional file extentions to make optional
-    //extensions: ['.coffee', '.hbs'],
-    src: ['components/*'],
+    extensions: ['.coffee', '.hbs'],
+    //src: ['components/*'],
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
