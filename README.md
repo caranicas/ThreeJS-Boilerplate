@@ -20,7 +20,7 @@ Starting point for Three JS App.
 
 
 -- Todo
-
+- Integrate orbital camera controls
 - Get backbone template rendering again.
 - Add aliasing.
 - figure out debowerify a bit better and config pathing.
