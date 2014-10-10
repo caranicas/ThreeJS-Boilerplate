@@ -29,6 +29,9 @@ class Demo
     requestAnimationFrame =>
       @loop()
     @update()
+    @render()
+
+  render: ->
     @renderer.render( @scene, @camera )
 
   update: ->

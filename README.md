@@ -3,13 +3,24 @@ ThreeJS-Boilerplate
 
 Starting point for Three JS App.
 
-- [ThreeJS](http://threejs.org/) For WebGL
+
+-- Important Tech Pieces --
+
+-- App Structure
 - [Backbone](http://backbonejs.org/) for some app structure
 - [Browserify](http://browserify.org/) for nice modules.
 - [Gulp](http://gulpjs.com/) for fast builds
 - [Coffee](http://coffeescript.org/) for clean code
+- [Debowerify](https://github.com/eugeneware/debowerify) Ease integration of bower components
+
+-- Demo Tech
+- [ThreeJS](http://threejs.org/) Web GL Wrapper
+- [Physijs](https://github.com/chandlerprall/Physijs) Phyisics plugin for three js
+
+
 
 -- Todo
 
-- Add canonical pathing for browserify modules.
-- Ingegrate [PhysiJS](https://github.com/chandlerprall/Physijs)
+- Get backbone template rendering again.
+- Add aliasing.
+- figure out debowerify a bit better and config pathing.
