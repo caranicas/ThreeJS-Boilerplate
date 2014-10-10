@@ -1,5 +1,7 @@
 THREE = require 'threejs'
 $ = require 'jquery'
+Controls = require './controls'
+
 
 class Demo
 
@@ -10,14 +12,16 @@ class Demo
 
   __initScene: ->
     @scene = new THREE.Scene()
-    webcan = $('#webgl-canvas')[0];
-    console.log 'scene canvas', webcan
-    @renderer = new THREE.WebGLRenderer({canvas:webcan})
+    @webcan = $('#webgl-canvas');
+    @renderer = new THREE.WebGLRenderer({canvas:@webcan[0]})
     @renderer.setSize( window.innerWidth, window.innerHeight )
 
   __initCamera: ->
     @camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 10000 )
     @camera.position.z = 1000
+    controls = new Controls( @camera);
+    controls.addEventListener( 'change', @render );
+    console.log 'controls', controls
 
   __initGeometry: ->
     @geometry = new THREE.BoxGeometry( 200, 200, 200 )
