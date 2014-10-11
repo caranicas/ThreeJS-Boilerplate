@@ -19,6 +19,9 @@ Starting point for Three JS App.
 
 
 
+- Note
+I have orbital camera controls, but they are local to the project. The next step is to make them into a bower component
+
 -- Todo
 - Integrate orbital camera controls
 - Get backbone template rendering again.

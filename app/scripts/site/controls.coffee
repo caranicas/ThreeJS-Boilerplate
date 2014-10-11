@@ -74,18 +74,16 @@ class OrbitalControls extends THREE.EventDispatcher
 		@
 
 	initalizeEvents: ->
-		#this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault() }, false )
+		#@domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault() }, false )
 
 		@localElement.addEventListener( 'mousedown', @onMouseDown, false )
 		@domElement.addEventListener( 'mousewheel', @onMouseWheel, false )
 		@domElement.addEventListener( 'DOMMouseScroll', @onMouseWheel, false ) # firefox
 		@domElement.addEventListener( 'keydown', @onKeyDown, false )
 
-		###
-		this.localElement.addEventListener( 'touchstart', touchstart, false )
-		this.domElement.addEventListener( 'touchend', touchend, false )
-		this.domElement.addEventListener( 'touchmove', touchmove, false )
-		###
+		@localElement.addEventListener( 'touchstart', @touchstart, false )
+		@domElement.addEventListener( 'touchend', @touchend, false )
+		@domElement.addEventListener( 'touchmove', @touchmove, false )
 
 	rotateLeft:(angle) ->
 		if angle is undefined
@@ -95,8 +93,8 @@ class OrbitalControls extends THREE.EventDispatcher
 
 	rotateUp:(angle) ->
 		if angle is undefined
-			angle = @getAutoRotationAngle();
-		@phiDelta -= angle;
+			angle = @getAutoRotationAngle()
+		@phiDelta -= angle
 
 	panLeft:(distance) ->
 		panOffset = new THREE.Vector3()
@@ -155,7 +153,7 @@ class OrbitalControls extends THREE.EventDispatcher
 
 	update: ->
 		console.log 'update last pos', @lastPosition
-		debugger;
+		debugger
 		position = @object.position
 		offset = position.clone().sub( @target )
 
@@ -345,6 +343,101 @@ class OrbitalControls extends THREE.EventDispatcher
 		# Greggman fix: https://github.com/greggman/three.js/commit/fde9f9917d6d8381f06bf22cdff766029d1761be
 		if needUpdate is true
 			@update()
+
+
+	touchstart:( event )->
+		if @enabled is false
+			return
+
+		if event.touches.length is 1
+			if @noRotate is true
+				return
+
+			@state = @STATE.TOUCH_ROTATE
+			@rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY )
+
+		else if event.touches.length is 2
+			if @noZoom is true
+				return
+			@state = @STATE.TOUCH_DOLLY
+
+			dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX
+			dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY
+			distance = Math.sqrt( dx * dx + dy * dy )
+			@dollyStart.set( 0, distance )
+
+		else if event.touches.length is 3
+			if @noPan is true
+				return
+			@state = @STATE.TOUCH_PAN
+			@panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY )
+
+		else
+			@state = @STATE.NONE
+
+
+	touchmove:( event )->
+		if @enabled is false
+			return
+		event.preventDefault()
+		event.stopPropagation()
+		element = if @domElement is document then @domElement.body else @domElement
+
+		if event.touches.length is 1
+			if @noRotate is true
+				return
+			if @state isnt @STATE.TOUCH_ROTATE
+				return
+
+			@rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY )
+			@rotateDelta.subVectors( @rotateEnd, @rotateStart )
+
+			# rotating across whole screen goes 360 degrees around
+			@rotateLeft( 2 * Math.PI * @rotateDelta.x / element.clientWidth * @rotateSpeed )
+			# rotating up and down along whole screen attempts to go 360, but limited to 180
+			@rotateUp( 2 * Math.PI * @rotateDelta.y / element.clientHeight * @rotateSpeed )
+			@rotateStart.copy( rotateEnd )
+
+		else if event.touches.length is 2
+			if @noZoom is true
+				return
+			if @state isnt @STATE.TOUCH_DOLLY
+				return
+			dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX
+			dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY
+			distance = Math.sqrt( dx * dx + dy * dy )
+			@dollyEnd.set( 0, distance )
+			@dollyDelta.subVectors( @dollyEnd, @dollyStart )
+
+			if@dollyDelta.y > 0
+				@dollyOut()
+			else
+				@dollyIn()
+
+			@dollyStart.copy(@dollyEnd)
+
+
+		else if event.touches.length is 3
+			if @noPan is true
+				return
+			if @state isnt @STATE.TOUCH_PAN
+				return
+
+			@panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY )
+			@panDelta.subVectors( @panEnd, @panStart )
+
+			@pan(@panDelta)
+
+			@panStart.copy(@panEnd)
+
+		else
+			@state = @STATE.NONE
+
+
+	touchend:->
+		if @enabled is false
+			return
+		@state = @STATE.NONE
 
 	getZoomScale: ->
 		return Math.pow( 0.95, @zoomSpeed )
