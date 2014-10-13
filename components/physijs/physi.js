@@ -1,3 +1,6 @@
+THREE = require('threejs')
+
+
 window.Physijs = (function() {
 	'use strict';
 

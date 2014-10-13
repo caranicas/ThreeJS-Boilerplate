@@ -1,5 +1,4 @@
-require.register("/Users/kendrickcaranicas/Desktop/ThreeJS-Boilerplate/app/scripts/site/obj/controls.js", function(exports, require, module){
-  var $, OrbitalControls, THREE,
+var $, OrbitalControls, THREE,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -435,6 +434,3 @@ OrbitalControls = (function(_super) {
 })(THREE.EventDispatcher);
 
 module.exports = OrbitalControls;
-
-
-});

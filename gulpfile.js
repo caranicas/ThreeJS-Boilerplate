@@ -14,3 +14,20 @@
 var requireDir = require('require-dir');
 // Require all tasks in gulp/tasks, including subfolders
 requireDir('./gulp/tasks', { recurse: true });
+
+
+
+
+
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var coffee = require('gulp-coffee');
+var uglify = require('gulp-uglify');
+
+
+
+gulp.task('component', function() {
+  gulp.src('app/scripts/site/obj/*.coffee')
+    .pipe(coffee({bare: true}))
+      .pipe(gulp.dest('comptest/'));
+});
