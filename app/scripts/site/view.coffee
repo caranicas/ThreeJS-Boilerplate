@@ -11,7 +11,7 @@ Backbone.$ = require 'jquery'
 Demo = require './demo.coffee'
 
 module.exports = Backbone.View.extend
-  template: require './template.hbs'
+  template: require './template'
 
   initialize: ->
     @render()
