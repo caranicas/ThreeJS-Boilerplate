@@ -1,9 +1,6 @@
 THREE = require 'threejs'
 $ = require 'jquery'
-Controls = require './controls'
-Physijs = require 'physijs'
-Orbit = require 'orbitalcontrols'
-
+Orbit = require 'orbitcontrols'
 
 
 class Demo
@@ -12,10 +9,6 @@ class Demo
     @__initScene()
     @__initCamera()
     @__initGeometry()
-    console.log 'Orbit',Orbit
-    alert('stop')
-    debugger;
-
 
   __initScene: ->
     @scene = new THREE.Scene()
@@ -26,9 +19,8 @@ class Demo
   __initCamera: ->
     @camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 10000 )
     @camera.position.z = 1000
-    controls = new Orbit( @camera);
-    controls.addEventListener( 'change', @render );
-    console.log 'controls', controls
+    controls = new Orbit(@camera);
+    controls.addEventListener( 'change', @render);
 
   __initGeometry: ->
     @geometry = new THREE.BoxGeometry( 200, 200, 200 )
@@ -42,7 +34,7 @@ class Demo
     @update()
     @render()
 
-  render: ->
+  render: =>
     @renderer.render( @scene, @camera )
 
   update: ->
