@@ -3,9 +3,6 @@ ThreeJS-Boilerplate
 
 Starting point for Three JS App.
 
-
--- Important Tech Pieces --
-
 -- App Structure
 - [Backbone](http://backbonejs.org/) for some app structure
 - [Browserify](http://browserify.org/) for nice modules.
@@ -15,15 +12,11 @@ Starting point for Three JS App.
 
 -- Demo Tech
 - [ThreeJS](http://threejs.org/) Web GL Wrapper
-- [Physijs](https://github.com/chandlerprall/Physijs) Phyisics plugin for three js
+- [OrbitControls](https://github.com/caranicas/threejs-components/tree/orbitcontrols) from my component repo pulled in through bower.
 
-
-
-- Note
-I have orbital camera controls, but they are local to the project. The next step is to make them into a bower component
 
 -- Todo
-- Integrate orbital camera controls
-- Get backbone template rendering again.
-- Add aliasing.
+- Add Testing
+- Integrate [Physijs](https://github.com/chandlerprall/Physijs)
+- Add pathing aliasing.
 - figure out debowerify a bit better and config pathing.

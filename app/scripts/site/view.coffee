@@ -15,7 +15,9 @@ module.exports = Backbone.View.extend
 
   initialize: ->
     @render()
+    console.log('init template', @template)
 
   render: ->
+    @$el.html @template
     Demo.threeInit()
     Demo.loop()
