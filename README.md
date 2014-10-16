@@ -12,8 +12,8 @@ Starting point for Three JS App.
 
 -- Demo Tech
 - [ThreeJS](http://threejs.org/) Web GL Wrapper
+- [Stats](https://github.com/mrdoob/stats.js) To make sure you arent chugging along [we are still waiting on a PR to come in so you need to manually specify the main file](https://github.com/mrdoob/stats.js/pull/24)
 - [OrbitControls](https://github.com/caranicas/threejs-components/tree/orbitcontrols) from my component repo pulled in through bower.
-
 
 -- Todo
 - Add Testing
