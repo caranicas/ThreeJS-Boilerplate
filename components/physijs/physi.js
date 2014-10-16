@@ -1,6 +1,10 @@
 THREE = require('threejs')
 
 
+
+//Physijs.scripts.worker = '../physijs_worker.js';
+//Physijs.scripts.ammo = 'examples/js/ammo.js';
+
 window.Physijs = (function() {
 	'use strict';
 
@@ -393,7 +397,7 @@ window.Physijs = (function() {
 		Eventable.call( this );
 		THREE.Scene.call( this );
 
-		this._worker = new Worker( Physijs.scripts.worker || 'physijs_worker.js' );
+		this._worker = new Worker( Physijs.scripts.worker || './physijs_worker.js' );
 		this._worker.transferableMessage = this._worker.webkitPostMessage || this._worker.postMessage;
 		this._materials_ref_counts = {};
 		this._objects = {};

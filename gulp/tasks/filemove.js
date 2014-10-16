@@ -1,7 +1,7 @@
 var gulp = require('gulp');
-var config = require('../config').markup
+var config = require('../config').physmove
 
-gulp.task('markup', ['filemove'], function() {
+gulp.task('filemove', function() {
   return gulp.src(config.src)
     .pipe(gulp.dest(config.dest));
 });

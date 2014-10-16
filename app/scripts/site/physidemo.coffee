@@ -3,6 +3,11 @@ $ = require 'jquery'
 Orbit = require 'orbitcontrols'
 Stats  = require 'stats'
 
+# obnoxious hack around
+Physijs = require 'physijs'
+Physijs = window.Physijs
+
+
 
 class Demo
 
@@ -14,9 +19,11 @@ class Demo
     @__initGeometry()
     @__initLights()
     @__debugStats()
+    console.log 'locl obj', Physijs
 
   __initScene: ->
-    @scene = new THREE.Scene()
+    @scene = new Physijs.Scene()
+    @scene.setGravity(new THREE.Vector3( 0, -30, 0 ));
     @webcan = $('#webgl-canvas');
     @renderer = new THREE.WebGLRenderer({canvas:@webcan[0]})
     @renderer.setSize( window.innerWidth, window.innerHeight )
@@ -35,21 +42,9 @@ class Demo
     @__Axis()
 
   __initBoxes: ->
-    @geometry = new THREE.BoxGeometry( 5, 5, 5 )
-    @material = new THREE.MeshLambertMaterial( { color: 0xff00ff, wireframe: false} )
-    @mesh = new THREE.Mesh( @geometry, @material )
-    @mesh.position.y = 10
-    @mesh.position.x = 5
-    @scene.add(@mesh)
-    @sceneObjs.push(@mesh)
-
-    @geometry = new THREE.BoxGeometry( 5, 5, 5 )
-    @material = new THREE.MeshLambertMaterial( { color: 0xffff00, wireframe: false} )
-    @mesh = new THREE.Mesh( @geometry, @material )
-    @mesh.position.y = 10
-    @mesh.position.x = -5
-    @scene.add(@mesh)
-    @sceneObjs.push(@mesh)
+    box = new Physijs.BoxMesh( new THREE.CubeGeometry( 5, 5, 5 ),new THREE.MeshBasicMaterial({ color: 0x888888 }));
+    @scene.add( box );
+    @sceneObjs.push(box)
 
   __initLights: ->
     directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
@@ -61,6 +56,17 @@ class Demo
     @scene.add( directionalLight )
 
   __floorGeometry: ->
+
+    ###
+    ground_material = Physijs.createMaterial(
+			new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'images/rocks.jpg' ) }),
+			.8, // high friction
+			.4 // low restitution
+		);
+    ground_material.map.wrapS = ground_material.map.wrapT = THREE.RepeatWrapping
+    ground_material.map.repeat.set( 3, 3 )
+    ###
+
     @floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' )
     @floorTexture.wrapT = THREE.RepeatWrapping
     @floorTexture.wrapS = @floorTexture.wrapT
@@ -97,9 +103,19 @@ class Demo
     @stats.end()
 
 
+  ###
+  applyForce: ->
+    strength = 35, distance, effect, offset, box;
+
+    for ( var i = 0; i < boxes.length; i++ ) {
+      box = boxes[i];
+      distance = mouse_position.distanceTo( box.position ),
+      effect = mouse_position.clone().sub( box.position ).normalize().multiplyScalar( strength / distance ).negate(),
+      offset = mouse_position.clone().sub( box.position );
+      box.applyImpulse( effect, offset );
+  ###
+
   update: ->
-    for mesh in @sceneObjs
-      mesh.rotation.x += 0.01
-      mesh.rotation.y += 0.02
+    @scene.simulate()
 
 module.exports = new Demo

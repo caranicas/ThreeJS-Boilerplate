@@ -26,6 +26,10 @@ module.exports = {
     src: src + "/htdocs/**",
     dest: dest
   },
+  physmove: {
+    src: src + "/physics/**",
+    dest: dest
+  },
   browserify: {
     // Enable source maps
     debug: true,
