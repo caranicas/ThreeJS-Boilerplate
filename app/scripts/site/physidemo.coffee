@@ -19,7 +19,6 @@ class Demo
     @__initGeometry()
     @__initLights()
     @__debugStats()
-    console.log 'locl obj', Physijs
 
   __initScene: ->
     @scene = new Physijs.Scene()
@@ -42,41 +41,41 @@ class Demo
     @__Axis()
 
   __initBoxes: ->
-    box = new Physijs.BoxMesh( new THREE.CubeGeometry( 5, 5, 5 ),new THREE.MeshBasicMaterial({ color: 0x888888 }));
+
+    cubeGeo = new THREE.CubeGeometry( 5, 5, 5 )
+    greyMat = new THREE.MeshLambertMaterial({ color: 0x888888 })
+    pinkMat =new THREE.MeshLambertMaterial({ color: 0xff88ff })
+    box = new Physijs.BoxMesh(cubeGeo ,greyMat);
+    box.position.y = 30;
     @scene.add( box );
-    @sceneObjs.push(box)
+
+
+
+    box_material = Physijs.createMaterial(pinkMat,.8,.4)
+    boxtwo = new Physijs.BoxMesh(cubeGeo,pinkMat);
+
+    #new Physijs.BoxMesh(cubeGeo,new THREE.MeshLambertMaterial({ color: 0xff00ff }));
+    boxtwo.position.y = 10;
+    boxtwo.position.x = 3;
+
+    @scene.add( boxtwo );
 
   __initLights: ->
-    directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
+    directionalLight = new THREE.DirectionalLight( 0x0000ff, 1 )
     directionalLight.position.set( -20, -20, -20)
     @scene.add( directionalLight )
-
-    directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
+    directionalLight = new THREE.DirectionalLight( 0xffffff, 1 )
     directionalLight.position.set(20,20,20)
     @scene.add( directionalLight )
 
   __floorGeometry: ->
-
-    ###
-    ground_material = Physijs.createMaterial(
-			new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'images/rocks.jpg' ) }),
-			.8, // high friction
-			.4 // low restitution
-		);
+    textMat = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' ) })
+    ground_material = Physijs.createMaterial(textMat,.8,.4)
     ground_material.map.wrapS = ground_material.map.wrapT = THREE.RepeatWrapping
     ground_material.map.repeat.set( 3, 3 )
-    ###
-
-    @floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' )
-    @floorTexture.wrapT = THREE.RepeatWrapping
-    @floorTexture.wrapS = @floorTexture.wrapT
-    @floorTexture.repeat.set( 10, 10 )
-    floorMaterial = new THREE.MeshBasicMaterial( { map: @floorTexture, side: THREE.DoubleSide } )
-    floorGeometry = new THREE.PlaneGeometry(100, 100, 10, 10)
-    floor = new THREE.Mesh(floorGeometry, floorMaterial)
-    floor.position.y = -0.5
-    floor.rotation.x = Math.PI / 2
-    @scene.add(floor);
+    ground = new Physijs.BoxMesh(new THREE.CubeGeometry(100, 1, 100),ground_material,0);
+    ground.receiveShadow = true;
+    @scene.add(ground);
 
   __Axis: ->
     axes = new THREE.AxisHelper(100);
