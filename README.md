@@ -14,9 +14,12 @@ Starting point for Three JS App.
 - [ThreeJS](http://threejs.org/) Web GL Wrapper
 - [Stats](https://github.com/mrdoob/stats.js) To make sure you arent chugging along [we are still waiting on a PR to come in so you need to manually specify the main file](https://github.com/mrdoob/stats.js/pull/24)
 - [OrbitControls](https://github.com/caranicas/threejs-components/tree/orbitcontrols) from my component repo pulled in through bower.
+- [Physijs](https://github.com/chandlerprall/Physijs) - Not well integrated, Had to manually add require threejs to the top of the file and double assign inside my demo to get rid of the window object,
+                                                        as well as make special expections for ammojs and physijs_worker.
 
 -- Todo
 - Add Testing
-- Integrate [Physijs](https://github.com/chandlerprall/Physijs)
+- Better integrate Physijs (potentially fork and make UMD module)
 - Add pathing aliasing.
 - figure out debowerify a bit better and config pathing.
+- basic routing between examples

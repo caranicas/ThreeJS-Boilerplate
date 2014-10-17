@@ -8,7 +8,7 @@
 #_          = require 'underscore'
 Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
-Demo = require './demo.coffee'
+Demo = require './physidemo.coffee'
 
 
 
