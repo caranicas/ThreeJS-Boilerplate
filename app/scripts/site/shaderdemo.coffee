@@ -37,7 +37,7 @@ class ShaderDemo
   __initGeometry: ->
     @__initBoxes()
     #@__floorGeometry()
-    @__Axis()
+    #@__Axis()
 
   __initBoxes: ->
     @geometry = new THREE.BoxGeometry( 5, 5, 5 )
@@ -90,17 +90,12 @@ class ShaderDemo
 
 
   __initShader: ->
-    debugger;
     @composer = new EffectComposer( @renderer );
     @composer.addPass( new RenderPass( @scene, @camera ) );
-
     effect = new ShaderPass( new DotScreenShader() );
-    debugger;
     effect.uniforms[ 'scale' ].value = 4;
     @composer.addPass( effect );
-    debugger;
-
-    # effect = new THREE.ShaderPass( THREE.RGBShiftShader );
+    #effect = new THREE.ShaderPass( THREE.RGBShiftShader );
     #effect.uniforms[ 'amount' ].value = 0.0015;
     #effect.renderToScreen = true;
     #@composer.addPass( effect );
@@ -108,7 +103,6 @@ class ShaderDemo
   __debugStats: ->
     @stats = new Stats()
     @stats.setMode(0)
-    console.log('@stats', @stats)
     @stats.domElement.style.position = 'absolute';
     @stats.domElement.style.left = '0px';
     @stats.domElement.style.top = '0px';
@@ -122,9 +116,8 @@ class ShaderDemo
 
   render: =>
     @stats.begin()
-    debugger;
     @composer.render()
-    #@renderer.render( @scene, @camera )
+    @renderer.render( @scene, @camera )
     @stats.end()
 
 
