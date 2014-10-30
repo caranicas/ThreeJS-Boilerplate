@@ -5,11 +5,8 @@
 # @constructor
 #
 ###
-#_          = require 'underscore'
 Backbone   = require 'backbone'
-Backbone.$ = require 'jquery'
 Demo = require './shaderdemo.coffee'
-
 
 module.exports = Backbone.View.extend
   template: require './template'

@@ -6,15 +6,16 @@ AppRouter = Backbone.Router.extend
     "":"index"
     "#!/phys":"goPhysics"
 
-  index: () ->
+  index: () =>
     alert('index')
+    @trigger 'index'
 
   goPhysics:->
     alert('phsy')
 
 
-
 module.exports = AppRouter
+
 
 
 

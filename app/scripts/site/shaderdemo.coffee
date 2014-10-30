@@ -21,7 +21,6 @@ class ShaderDemo
     @__initShader()
     @__debugStats()
 
-
   __initScene: ->
     @scene = new THREE.Scene()
     @webcan = $('#webgl-canvas')
