@@ -11,6 +11,7 @@
     "effectcomposer":"https://github.com/caranicas/threejs-components.git#effectcomposer",
     "renderpass":"https://github.com/caranicas/threejs-components.git#renderpass",
     "dotscreenshader":"https://github.com/caranicas/threejs-components.git#dotscreenshader",
+    "rgbshiftshader":"https://github.com/caranicas/threejs-components.git#rgbshiftshader",
     "stats":"https://github.com/mrdoob/stats.js.git"
 
   },
