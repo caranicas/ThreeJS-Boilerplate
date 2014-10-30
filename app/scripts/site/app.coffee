@@ -1,31 +1,21 @@
 ##View =  require './view.coffee'
 ##view = new View(el: '#canvas-layer')
 Backbone   = require 'backbone'
-
+jquery = require 'jquery'
 Router =  require './router.coffee'
-
-
-
-
-
 
 
 class App
 
   constructor: ->
+    Backbone.$ = jquery
     @router = new Router()
-
+    Backbone.history.start()
     #router = new Router()
-    console.log('router', @router)
-
     @router.on 'index', @appIndex
-
-    Backbone.history.start();
-
 
   appIndex: ->
     alert('appp')
-
 
 
 
