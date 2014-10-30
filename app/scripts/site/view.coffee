@@ -8,9 +8,7 @@
 #_          = require 'underscore'
 Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
-Demo = require './physidemo.coffee'
-
-
+Demo = require './shaderdemo.coffee'
 
 
 module.exports = Backbone.View.extend
