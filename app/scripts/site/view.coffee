@@ -10,11 +10,13 @@ Demo = require './shaderdemo.coffee'
 
 module.exports = Backbone.View.extend
   template: require './template'
+  demo:Demo
 
-  initialize: ->
+  initialize:(options) ->
+    @demo  = options.demo
     @render()
 
   render: ->
     @$el.html @template
-    Demo.threeInit()
-    Demo.loop()
+    @demo.threeInit()
+    @demo.loop()
