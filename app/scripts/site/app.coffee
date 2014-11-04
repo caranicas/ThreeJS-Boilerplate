@@ -4,13 +4,14 @@ Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
 Router =  require './router.coffee'
 
-basicDemo = require './demo.coffee'
-physiDemo = require './physidemo.coffee'
-shaderDemo = require './shaderdemo.coffee'
-
+basicDemo = require './demos/basicdemo.coffee'
+physiDemo = require './demos/physidemo.coffee'
+shaderDemo = require './demos/shaderdemo.coffee'
 
 
 class App
+
+  isDebugging:true
 
   constructor: ->
     @router = new Router()
@@ -19,13 +20,12 @@ class App
     @router.on 'route:shader', @shaderIndex
     Backbone.history.start()
 
-
-  appIndex: ->
-    view = new View(el: '#canvas-layer', demo:basicDemo)
-  physIndex: ->
-    view = new View(el: '#canvas-layer', demo:physiDemo)
-  shaderIndex: ->
-    view = new View(el: '#canvas-layer', demo:shaderDemo)
+  appIndex: =>
+    view = new View(el: '#canvas-layer', demo:new basicDemo({debug:@isDebugging}))
+  physIndex: =>
+    view = new View(el: '#canvas-layer', demo:new physiDemo({debug:@isDebugging}))
+  shaderIndex: =>
+    view = new View(el: '#canvas-layer', demo:new shaderDemo({debug:@isDebugging}))
 
 
 app = new App()
