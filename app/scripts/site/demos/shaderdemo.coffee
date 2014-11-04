@@ -1,7 +1,5 @@
 THREE = require 'threejs'
-$ = require 'jquery'
-Orbit = require 'orbitcontrols'
-Stats  = require 'stats'
+
 EffectComposer = require 'effectcomposer'
 RenderPass = require 'renderpass'
 ShaderPass = require 'shaderpass'
@@ -13,7 +11,6 @@ DemoInterface = require './DemoInterface'
 
 class ShaderDemo extends DemoInterface
 
-  sceneObjs:[]
 
   threeInit: ->
     super
