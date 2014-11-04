@@ -6,11 +6,9 @@
 #
 ###
 Backbone   = require 'backbone'
-Demo = require './shaderdemo.coffee'
 
 module.exports = Backbone.View.extend
   template: require './template'
-  demo:Demo
 
   initialize:(options) ->
     @demo  = options.demo
