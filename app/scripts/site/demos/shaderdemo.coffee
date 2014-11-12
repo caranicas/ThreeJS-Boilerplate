@@ -3,8 +3,8 @@ $ = require 'jquery'
 Orbit = require 'orbitcontrols'
 Stats  = require 'stats'
 EffectComposer = require 'effectcomposer'
-RenderPass = require 'renderpass'
-ShaderPass = require 'shaderpass'
+#RenderPass = require 'renderpass'
+#ShaderPass = require 'shaderpass'
 DotScreenShader = require 'dotscreenshader'
 RGBShiftShader = require 'rgbshiftshader'
 
@@ -21,15 +21,16 @@ class ShaderDemo extends DemoInterface
     @__createShaderEffects()
 
   __initShader: ->
+    console.log('composer', EffectComposer)
     @composer = new EffectComposer( @renderer )
-    @composer.addPass( new RenderPass( @scene, @camera ) )
+    @composer.addPass( new EffectComposer.prototype.RenderPass( @scene, @camera ) )
 
   __createShaderEffects: ->
-    effect = new ShaderPass( new DotScreenShader() )
+    effect = new EffectComposer.prototype.ShaderPass( new DotScreenShader() )
     effect.uniforms[ 'scale' ].value = 4
     @composer.addPass( effect )
 
-    effect = new ShaderPass( new RGBShiftShader())
+    effect = new EffectComposer.prototype.ShaderPass( new RGBShiftShader())
     effect.uniforms[ 'amount' ].value = 0.0015
     effect.renderToScreen = true
     @composer.addPass( effect )

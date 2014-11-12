@@ -8,8 +8,7 @@
     "threejs": "latest",
     "physijs": "latest",
     "orbitcontrols":"https://github.com/caranicas/threejs-components.git#orbitcontrols",
-    "effectcomposer":"https://github.com/caranicas/threejs-components.git#effectcomposer",
-    "renderpass":"https://github.com/caranicas/threejs-components.git#renderpass",
+    "effectcomposer":"https://github.com/caranicas/ThreeJS-EffectComposer.git",
     "dotscreenshader":"https://github.com/caranicas/threejs-components.git#dotscreenshader",
     "rgbshiftshader":"https://github.com/caranicas/threejs-components.git#rgbshiftshader",
     "stats":"https://github.com/mrdoob/stats.js.git"
