@@ -7,14 +7,4 @@ AppRouter = Backbone.Router.extend
     "!/physics":"physics"
     "!/shader":"shader"
 
-
 module.exports = AppRouter
-
-
-
-
-
-
-
-
-#exports.AppRouter = class AppRouter extends Backbone.Router

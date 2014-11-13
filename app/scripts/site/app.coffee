@@ -8,7 +8,6 @@ basicDemo = require './demos/basicdemo.coffee'
 physiDemo = require './demos/physidemo.coffee'
 shaderDemo = require './demos/shaderdemo.coffee'
 
-
 class App
 
   isDebugging:true

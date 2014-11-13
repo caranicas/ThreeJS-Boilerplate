@@ -1,9 +1,5 @@
 THREE = require 'threejs'
-$ = require 'jquery'
-Orbit = require 'orbitcontrols'
-Stats  = require 'stats'
 DemoInterface = require './DemoInterface'
-#_ = require 'underscore'
 
 class BasicDemo extends DemoInterface
 
@@ -39,7 +35,7 @@ class BasicDemo extends DemoInterface
     floor = new THREE.Mesh(floorGeometry, floorMaterial)
     floor.position.y = -0.5
     floor.rotation.x = Math.PI / 2
-    @scene.add(floor);
+    @scene.add(floor)
 
   __initLights: ->
     directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
