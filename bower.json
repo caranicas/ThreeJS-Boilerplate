@@ -7,7 +7,7 @@
     "jquery": "~2.1.0",
     "threejs": "latest",
     "physijs": "latest",
-    "orbitcontrols": "https://github.com/caranicas/threejs-components.git#orbitcontrols",
+    "orbitcontrols": "https://github.com/caranicas/ThreeJS-Controls.git#orbitcontrols",
     "effectcomposer": "https://github.com/caranicas/ThreeJS-EffectComposer.git",
     "dotscreenshader": "https://github.com/caranicas/threejs-components.git#dotscreenshader",
     "rgbshiftshader": "https://github.com/caranicas/threejs-components.git#rgbshiftshader",
