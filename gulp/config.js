@@ -26,7 +26,7 @@ module.exports = {
     src: src + "/htdocs/**",
     dest: dest
   },
-  physmove: {
+  physimove: {
     src: src + "/physics/**",
     dest: dest
   },
