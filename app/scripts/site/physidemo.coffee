@@ -8,7 +8,6 @@ Physijs = require 'physijs'
 Physijs = window.Physijs
 
 
-
 class Demo
 
   sceneObjs:[]
