@@ -13,7 +13,7 @@ ThreeJS-Boilerplate
 
 * * *
 
-- I didn't want to make to make a repo for each individual threejs component, but Bower has so limitations in how you can include things so it left me with an inconvenient git structure, for both controls and shaders. The Master Branches are essentially Just the readme, and the individual feature branches are where the actual components live. Hopefully In the future I will come up with a more elegant solution but this works for me for the time being.  
+- I didn't want to make to make a repo for each individual threejs component, but Bower has some limitations in how you can include things so it left me with an inconvenient git structure for both controls and shaders. The Master Branches are essentially Just the readme, and the individual feature branches are where the actual components live. Hopefully In the future I will come up with a more elegant solution but this works for me for the time being.  
 
 
 ####App Structure
