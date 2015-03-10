@@ -72,8 +72,6 @@ class DemoInterface
     @stats.end()
 
   __update: ->
-    #for mesh in @sceneObjs
-    #  mesh.rotation.x += 0.01
-    #  mesh.rotation.y += 0.02
+
 
 module.exports = DemoInterface
