@@ -35,7 +35,7 @@ class PhysiDemo extends DemoInterface
 
 
   __floorGeometry: ->
-    textMat = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' ) })
+    textMat = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'textures/checkerboard.jpg' ) })
     ground_material = Physijs.createMaterial(textMat,.8,.4)
     ground_material.map.wrapS = ground_material.map.wrapT = THREE.RepeatWrapping
     ground_material.map.repeat.set( 3, 3 )
@@ -50,7 +50,6 @@ class PhysiDemo extends DemoInterface
     directionalLight = new THREE.DirectionalLight( 0xffffff, 1 )
     directionalLight.position.set(20,20,20)
     @scene.add( directionalLight )
-
 
 
   __update: ->

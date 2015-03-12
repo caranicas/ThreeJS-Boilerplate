@@ -26,7 +26,7 @@ class BasicDemo extends DemoInterface
     @sceneObjs.push(@mesh)
 
   __floorGeometry: ->
-    @floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' )
+    @floorTexture = new THREE.ImageUtils.loadTexture( 'textures/checkerboard.jpg' )
     @floorTexture.wrapT = THREE.RepeatWrapping
     @floorTexture.wrapS = @floorTexture.wrapT
     @floorTexture.repeat.set( 10, 10 )

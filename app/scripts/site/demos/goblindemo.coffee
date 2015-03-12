@@ -1,6 +1,6 @@
 THREE = require 'threejs'
 Goblin = require 'goblinphysics'
-
+Utils = require '../utils/goblinUtils'
 
 DemoInterface = require './DemoInterface'
 
@@ -16,11 +16,6 @@ class GoblinDemo extends DemoInterface
 
   __initScene: ->
     super
-    console.log 'goblin', Goblin
-
-    # @webcan = $('#webgl-canvas')
-    @renderer = new THREE.WebGLRenderer({canvas:@webcan[0]})
-    @renderer.setSize( window.innerWidth, window.innerHeight )
 
     BB = new Goblin.BasicBroadphase()
     NP = new Goblin.NarrowPhase()
@@ -30,7 +25,7 @@ class GoblinDemo extends DemoInterface
 
   __initGeometry: ->
     super
-    #@__initBoxes()
+    @__initBoxes()
     @__floorGeometry()
 
   __initBoxes:() ->
@@ -48,104 +43,27 @@ class GoblinDemo extends DemoInterface
 
     #1, 20, 20, 0, exampleUtils.createMaterial( 'pebbles', 5, 5 )
   __floorGeometry: ->
-    @ground = @__createPlane( 1, 20, 20, 0, @__floorMaterial( 5, 5 ) )
-    #material = @__floorMaterial()
-    #plane = new THREE.Mesh(new THREE.BoxGeometry( 1, 1, 1),  material)
-    #plane.castShadow = true
-    #plane.receiveShadow = true
-    #plane.goblin = new Goblin.RigidBody(
-    # //new Goblin.PlaneShape( orientation, half_width, half_length ),
-    #
-    # new Goblin.BoxShape(
-    # orientation === 1 || orientation === 2 ? half_width : 0.005,
-    # orientation === 0 ? half_width : ( orientation === 2 ? half_length : 0.005 ),
-    # orientation === 0 || orientation === 1 ? half_length : 0.005
-    # ),
-    # mass
-    # )
-    #
+    material = Utils.createMaterial('pebbles', 5, 5,@renderer)
+    @ground = Utils.createPlane( 1, 20, 20, 0,material, true)
+    @ground.position.y = -0.5
+    @ground.position.x = -0.5
     @objects.push( @ground  )
-    @exampleUtils.scene.add( @ground  )
+    @scene.add( @ground  )
     @world.addRigidBody( @ground.goblin )
-    #
-    # return plane
-
-  __createPlane:( orientation, half_width, half_length, mass, material ) ->
-    # plane = new THREE.Mesh(
-    #   new THREE.BoxGeometry(
-    #   orientation === 1 || orientation === 2 ? half_width * 2 : 0.01,
-    #   orientation === 0 ? half_width * 2 : ( orientation === 2 ? half_length * 2 : 0.01 ),
-    #   orientation === 0 || orientation === 1 ? half_length * 2 : 0.01
-    #   ),
-    #   material
-    # )
-    plane.castShadow = true
-    plane.receiveShadow = true
-    #new Goblin.PlaneShape( orientation, half_width, half_length ),
-    plane.goblin = new Goblin.RigidBody(
-    new Goblin.BoxShape(
-      orientation === 1 || orientation === 2 ? half_width : 0.005,
-      orientation === 0 ? half_width : ( orientation === 2 ? half_length : 0.005 ),
-      orientation === 0 || orientation === 1 ? half_length : 0.005
-      ),
-      mass
-    )
-
-    #objects.push( plane )
-    #exampleUtils.scene.add( plane )
-    #world.addRigidBody( plane.goblin )
-
-    return plane
-
-
-  __floorMaterial:( repeat_x, repeat_y)->
-    #var def = exampleUtils.materials[name],
-    map = THREE.ImageUtils.loadTexture('images/checkerboard.jpg')
-    #normalMap, specularMap,
-    material_def = {
-      shininess: 0
-    }
-
-    map.repeat.x = repeat_x
-    map.repeat.y = repeat_y
-    map.wrapS = map.wrapT = THREE.RepeatWrapping
-    map.anisotropy = @renderer.getMaxAnisotropy()
-    material_def.map = map
-
-    # if ( def.normal ) {
-    # normalMap = THREE.ImageUtils.loadTexture( 'textures/' + def.normal, THREE.RepeatWrapping );
-    # normalMap.repeat.x = repeat_x;
-    # normalMap.repeat.y = repeat_y;
-    # normalMap.wrapS = normalMap.wrapT = THREE.RepeatWrapping;
-    # normalMap.anisotropy = renderer.getMaxAnisotropy();
-    # material_def.normalMap = normalMap;
-    # }
-    #
-    # if ( def.specular ) {
-    # specularMap = THREE.ImageUtils.loadTexture( 'textures/' + def.specular, THREE.RepeatWrapping );
-    # specularMap.repeat.x = repeat_x;
-    # specularMap.repeat.y = repeat_y;
-    # specularMap.wrapS = specularMap.wrapT = THREE.RepeatWrapping;
-    # specularMap.anisotropy = renderer.getMaxAnisotropy();
-    # material_def.specularMap = specularMap;
-    # material_def.shininess = def.shininess;
-    # }
-
-    material = new THREE.MeshPhongMaterial( material_def )
-
-    #if ( def.normal_scale ) {
-    #material.normalScale.set( def.normal_scale, def.normal_scale );
-    #}
-
-    #if ( def.metal ) {
-    #material.metal = true;
-    #}
-
-    #return material
-
 
   __initLights: ->
-
+    ambient_light = new THREE.AmbientLight( new THREE.Color( 0x333333 ) )
+    @scene.add( ambient_light )
+    directional_light = new THREE.DirectionalLight( new THREE.Color( 0xFFFFFF ) )
+    directional_light.position.set( 10, 30, 20 )
+    directional_light.shadowCameraLeft = directional_light.shadowCameraBottom = -50
+    directional_light.shadowCameraRight = directional_light.shadowCameraTop = 50
+    directional_light.castShadow = true
+    directional_light.shadowCameraNear = 1
+    directional_light.shadowCameraFar = 50
+    directional_light.shadowCameraFov = 50
+    directional_light.shadowDarkness = 0.5
+    @scene.add( directional_light )
 
   __update: ->
     @world.step( 1 / 60 )

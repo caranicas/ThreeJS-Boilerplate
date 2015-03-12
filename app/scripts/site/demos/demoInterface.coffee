@@ -67,7 +67,7 @@ class DemoInterface
     @__update()
     @__render()
 
-  __render: =>
+  __render: ->
     @stats.begin()
     @renderer.render( @scene, @camera )
     @stats.end()
