@@ -1,4 +1,5 @@
-THREE = require 'threejs'
+window.THREE = THREE = require 'threejs'
+
 $ = require 'jquery'
 Orbit = require 'orbitcontrols'
 Stats  = require 'stats'

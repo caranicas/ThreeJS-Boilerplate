@@ -15,6 +15,6 @@
     "stats": "https://github.com/mrdoob/stats.js.git"
   },
   "resolutions": {
-    "threejs": "ca14c79920"
+    "threejs": "74e7d09c26"
   }
 }
