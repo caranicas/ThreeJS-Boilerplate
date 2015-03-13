@@ -52,7 +52,7 @@ class GoblinUtils
     map = THREE.ImageUtils.loadTexture(def.diffuse )
     material_def =
       shininess: 0
-      wireframe: true
+      wireframe: false
 
     console.log 'material_def', material_def
     map.repeat.x = repeat_x
