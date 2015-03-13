@@ -55,7 +55,7 @@ class ShaderDemo extends DemoInterface
     @scene.add( directionalLight )
 
   __floorGeometry: ->
-    @floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' )
+    @floorTexture = new THREE.ImageUtils.loadTexture( 'textures/checkerboard.jpg' )
     @floorTexture.wrapT = THREE.RepeatWrapping
     @floorTexture.wrapS = @floorTexture.wrapT
     @floorTexture.repeat.set( 10, 10 )
@@ -75,7 +75,7 @@ class ShaderDemo extends DemoInterface
     @update()
     @render()
 
-  render: =>
+  render: ->
     @stats.begin()
     @composer.render()
     @stats.end()

@@ -31,7 +31,7 @@ class DemoInterface
 
   __initCamera: ->
     @camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 10000 )
-    @camera.position.z = 30
+    @camera.position.z = 20
     @camera.position.y = 10
 
     controls = new Orbit(@camera)
@@ -67,14 +67,12 @@ class DemoInterface
     @__update()
     @__render()
 
-  __render: =>
+  __render: ->
     @stats.begin()
     @renderer.render( @scene, @camera )
     @stats.end()
 
   __update: ->
-    #for mesh in @sceneObjs
-    #  mesh.rotation.x += 0.01
-    #  mesh.rotation.y += 0.02
+
 
 module.exports = DemoInterface

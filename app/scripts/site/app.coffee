@@ -7,6 +7,7 @@ Router =  require './router.coffee'
 basicDemo = require './demos/basicdemo.coffee'
 physiDemo = require './demos/physidemo.coffee'
 shaderDemo = require './demos/shaderdemo.coffee'
+goblinDemo = require './demos/goblindemo.coffee'
 
 class App
 
@@ -17,6 +18,7 @@ class App
     @router.on 'route:index', @appIndex
     @router.on 'route:physics', @physIndex
     @router.on 'route:shader', @shaderIndex
+    @router.on 'route:goblin', @gobinIndex
     Backbone.history.start()
 
   appIndex: =>
@@ -25,6 +27,8 @@ class App
     view = new View(el: '#canvas-layer', demo:new physiDemo({debug:@isDebugging}))
   shaderIndex: =>
     view = new View(el: '#canvas-layer', demo:new shaderDemo({debug:@isDebugging}))
+  gobinIndex: =>
+    view = new View(el: '#canvas-layer', demo:new goblinDemo({debug:@isDebugging}))
 
 
 app = new App()

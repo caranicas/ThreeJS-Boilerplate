@@ -6,5 +6,6 @@ AppRouter = Backbone.Router.extend
     "":"index"
     "!/physics":"physics"
     "!/shader":"shader"
+    "!/goblin":"goblin"
 
 module.exports = AppRouter
