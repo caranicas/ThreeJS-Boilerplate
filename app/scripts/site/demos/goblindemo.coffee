@@ -11,17 +11,19 @@ class GoblinDemo extends DemoInterface
     @objects = new Array()
 
   threeInit: ->
-    #@__initGoblin()
+    #
     super
 
   __initScene: ->
     super
+    @__initGoblin()
+    console.log 'world', @world
 
+  __initGoblin: ->
     BB = new Goblin.BasicBroadphase()
     NP = new Goblin.NarrowPhase()
     IS = new Goblin.IterativeSolver()
     @world = new Goblin.World(BB, NP, IS)
-    console.log 'world', @world
 
   __initGeometry: ->
     super
@@ -29,24 +31,29 @@ class GoblinDemo extends DemoInterface
     @__floorGeometry()
 
   __initBoxes:() ->
-    material = new THREE.MeshLambertMaterial( { color: 0xffff00, wireframe: false} )
-    box = new THREE.Mesh(new THREE.BoxGeometry(2,2,2),material)
-    box.castShadow = true
-    box.receiveShadow = true
-    box.goblin = new Goblin.RigidBody(new Goblin.BoxShape(2,2,2),3)
-    box.position.y = 10
-    box.position.x = 3
-    @objects.push(box)
-    @scene.add(box)
-    @world.addRigidBody(box.goblin)
+    wood_material = Utils.createMaterial( 'wood', 1, 1,@renderer)
+    metal_material = Utils.createMaterial( 'rusted_metal', 1, 1,@renderer)
+    woodbox = Utils.createBox( 1, 1, 1, 100, wood_material, true )
+    woodbox.goblin.position.y = 10
+    @objects.push(woodbox)
+    @scene.add(woodbox)
+    @world.addRigidBody(woodbox.goblin)
+
+
+    metalbox = Utils.createBox( 1, 1, 1, 100, metal_material, true )
+    metalbox.goblin.position.y = 14
+    metalbox.goblin.position.x = 1
+    @objects.push(metalbox)
+    @scene.add(metalbox)
+    @world.addRigidBody(metalbox.goblin)
 
 
     #1, 20, 20, 0, exampleUtils.createMaterial( 'pebbles', 5, 5 )
   __floorGeometry: ->
     material = Utils.createMaterial('pebbles', 5, 5,@renderer)
     @ground = Utils.createPlane( 1, 20, 20, 0,material, true)
-    @ground.position.y = -0.5
-    @ground.position.x = -0.5
+    @ground.goblin.position.y = 0
+    @ground.goblin.position.x = 0
     @objects.push( @ground  )
     @scene.add( @ground  )
     @world.addRigidBody( @ground.goblin )
@@ -67,5 +74,9 @@ class GoblinDemo extends DemoInterface
 
   __update: ->
     @world.step( 1 / 60 )
+    for object in @objects
+      object.position.set(object.goblin.position.x,object.goblin.position.y,object.goblin.position.z)
+      object.quaternion.set(object.goblin.rotation.x,object.goblin.rotation.y,object.goblin.rotation.z,object.goblin.rotation.w)
+
 
 module.exports = GoblinDemo

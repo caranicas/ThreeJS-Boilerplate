@@ -31,7 +31,7 @@ class DemoInterface
 
   __initCamera: ->
     @camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 10000 )
-    @camera.position.z = 30
+    @camera.position.z = 20
     @camera.position.y = 10
 
     controls = new Orbit(@camera)

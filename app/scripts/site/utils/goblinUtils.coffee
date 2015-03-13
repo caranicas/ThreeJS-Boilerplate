@@ -10,7 +10,6 @@ class GoblinUtils
       diffuse: 'textures/254_diffuse.png'
       normal: 'textures/254_normal.png'
       normal_scale: 4
-
     rusted_metal:
       diffuse: 'textures/210_diffuse.png'
       normal: 'textures/210_normal.png'
@@ -45,7 +44,16 @@ class GoblinUtils
     plane.receiveShadow = hasShadow
     #new Goblin.PlaneShape( orientation, half_width, half_length ),
     plane.goblin = new Goblin.RigidBody(new Goblin.BoxShape(width, height, depth),mass)
-    return plane
+
+    plane
+
+  createBox:( half_width, half_height, half_length, mass, material,hasShadow ) ->
+    box = new THREE.Mesh(new THREE.BoxGeometry( half_width * 2, half_height * 2, half_length * 2 ),material)
+    box.castShadow = hasShadow
+    box.receiveShadow = hasShadow
+    box.goblin = new Goblin.RigidBody(new Goblin.BoxShape( half_width, half_height, half_length ),mass)
+
+    box
 
   createMaterial:( name, repeat_x, repeat_y,renderer) ->
     def = @materials[name]
