@@ -19,7 +19,7 @@ class App
     @router.on 'route:physics', @physIndex
     @router.on 'route:shader', @shaderIndex
     @router.on 'route:goblin', @gobinIndex
-    Backbone.history.start({ pushState: true,root:'/' })
+    test = Backbone.history.start({ pushState: true})
 
   appIndex: =>
     view = new View(el: '#canvas-layer', demo:new basicDemo({debug:@isDebugging}))
