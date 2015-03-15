@@ -7,7 +7,7 @@
 ###
 
 Backbone   = require 'backbone'
-Demos = require './demos'
+Demos = require './../demos'
 
 module.exports = Backbone.View.extend
   template: require './template'

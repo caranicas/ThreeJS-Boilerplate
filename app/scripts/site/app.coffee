@@ -17,7 +17,6 @@ class App
 
   constructor: ->
     @router = new Router()
-    console.log '@router', @router
     @__routeHandlers()
     Backbone.history.start()
 

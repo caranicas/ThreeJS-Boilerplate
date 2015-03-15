@@ -1,9 +1,8 @@
 Backbone   = require 'backbone'
-Demos = require './pages/demos.coffee'
+Demos = require './demos'
 
 AppRouter = Backbone.Router.extend
 
-  test:[1,2,3]
   constructor: ->
     @demos = new Demos()
     @__createRoutes()
@@ -11,7 +10,7 @@ AppRouter = Backbone.Router.extend
 
   __createRoutes:->
     @route("", "index")
-    for link in @demos.get 'links'
+    for link in @demos.get 'data'
       @route("!"+link.url, link.name)
 
 module.exports = AppRouter
