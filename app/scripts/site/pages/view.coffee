@@ -7,14 +7,13 @@
 ###
 
 Backbone   = require 'backbone'
-Links = require './links'
+Demos = require './demos'
 
 module.exports = Backbone.View.extend
   template: require './template'
 
   initialize:(options) ->
-    @model = new Links()
-    console.log "LINKS", @model
+    @model = new Demos()
     @render()
 
   render: ->

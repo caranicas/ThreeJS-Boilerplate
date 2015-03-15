@@ -3,7 +3,6 @@ Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
 Router =  require './router.coffee'
 
-
 MenuView = require './pages/view.coffee'
 
 GlView =  require './gl/view.coffee'
@@ -18,29 +17,28 @@ class App
 
   constructor: ->
     @router = new Router()
-
-    console.log 'ROUTER', @router
-
-    @router.on 'route:index', @appIndex
-    @router.on 'route:basic', @basicIndex
-    @router.on 'route:physics', @physIndex
-    @router.on 'route:shader', @shaderIndex
-    @router.on 'route:goblin', @gobinIndex
-
+    console.log '@router', @router
+    @__routeHandlers()
     Backbone.history.start()
 
+  __routeHandlers: ->
+    @router.on 'route:index', @appIndex
+    @router.on 'route:basic', @basicIndex
+    @router.on 'route:shader', @shaderIndex
+    @router.on 'route:physics', @physIndex
+    @router.on 'route:goblin', @gobinIndex
+
   appIndex: =>
-    alert 'APPP INDEX'
+    console.log 'APPPP!'
     IntroView = new MenuView(el: 'body')
 
   basicIndex: =>
     BacisView = new GlView(el: 'body', demo:new basicDemo({debug:@isDebugging}))
-  physIndex: =>
-    PhysView = new GlView(el: 'body', demo:new physiDemo({debug:@isDebugging}))
   shaderIndex: =>
     ShaderView = new GlView(el: 'body', demo:new shaderDemo({debug:@isDebugging}))
+  physIndex: =>
+    PhysView = new GlView(el: 'body', demo:new physiDemo({debug:@isDebugging}))
   gobinIndex: =>
     GoblinView = new GlView(el: 'body', demo:new goblinDemo({debug:@isDebugging}))
-
 
 app = new App()
