@@ -1,13 +1,6 @@
 
 Backbone   = require 'backbone'
 
-
-# basicDemo = require './gl/demos/basicdemo.coffee'
-# physiDemo = require './gl/demos/physidemo.coffee'
-# shaderDemo = require './gl/demos/shaderdemo.coffee'
-# goblinDemo = require './gl/demos/goblindemo.coffee'
-
-
 module.exports = Backbone.Model.extend
 
   defaults:
@@ -16,7 +9,6 @@ module.exports = Backbone.Model.extend
         'url':'/basic'
         'name':'basic'
         'demoClass':require './gl/demos/basicdemo.coffee'
-
       },
       {
         'url':'/shader'
