@@ -1,13 +1,16 @@
 
-View =  require './view.coffee'
 Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
 Router =  require './router.coffee'
 
-basicDemo = require './demos/basicdemo.coffee'
-physiDemo = require './demos/physidemo.coffee'
-shaderDemo = require './demos/shaderdemo.coffee'
-goblinDemo = require './demos/goblindemo.coffee'
+
+MenuView = require './pages/view.coffee'
+
+GlView =  require './gl/view.coffee'
+basicDemo = require './gl/demos/basicdemo.coffee'
+physiDemo = require './gl/demos/physidemo.coffee'
+shaderDemo = require './gl/demos/shaderdemo.coffee'
+goblinDemo = require './gl/demos/goblindemo.coffee'
 
 class App
 
@@ -15,20 +18,29 @@ class App
 
   constructor: ->
     @router = new Router()
+
+    console.log 'ROUTER', @router
+
     @router.on 'route:index', @appIndex
+    @router.on 'route:basic', @basicIndex
     @router.on 'route:physics', @physIndex
     @router.on 'route:shader', @shaderIndex
     @router.on 'route:goblin', @gobinIndex
+
     Backbone.history.start()
 
   appIndex: =>
-    view = new View(el: '#canvas-layer', demo:new basicDemo({debug:@isDebugging}))
+    alert 'APPP INDEX'
+    IntroView = new MenuView(el: 'body')
+
+  basicIndex: =>
+    BacisView = new GlView(el: 'body', demo:new basicDemo({debug:@isDebugging}))
   physIndex: =>
-    view = new View(el: '#canvas-layer', demo:new physiDemo({debug:@isDebugging}))
+    PhysView = new GlView(el: 'body', demo:new physiDemo({debug:@isDebugging}))
   shaderIndex: =>
-    view = new View(el: '#canvas-layer', demo:new shaderDemo({debug:@isDebugging}))
+    ShaderView = new GlView(el: 'body', demo:new shaderDemo({debug:@isDebugging}))
   gobinIndex: =>
-    view = new View(el: '#canvas-layer', demo:new goblinDemo({debug:@isDebugging}))
+    GoblinView = new GlView(el: 'body', demo:new goblinDemo({debug:@isDebugging}))
 
 
 app = new App()
