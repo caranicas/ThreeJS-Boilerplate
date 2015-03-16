@@ -7,13 +7,14 @@
 ###
 
 Backbone   = require 'backbone'
-Demos = require './../demos'
-
-module.exports = Backbone.View.extend
+#Demos = require './../demos'
+module.exports = class Pageview extends Backbone.View
   template: require './template'
 
-  initialize:(options) ->
-    @model = new Demos()
+  constructor:(args) ->
+    console.log 'APP CON', args
+    #@model = options.data
+    super
     @render()
 
   render: ->

@@ -1,6 +1,6 @@
 
 Backbone   = require 'backbone'
-Backbone.$ = require 'jquery'
+$ = Backbone.$ = require 'jquery'
 Router =  require './router'
 
 MenuView = require './pages/view'
@@ -14,8 +14,10 @@ class App
 
   constructor: ->
     @demos = new Demos()
-    @router = new Router(@demos)
+    @router = new Router(model:@demos)
+    console.log '@router', @router
     @__routeHandlers()
+    @__facitatePushState()
     Backbone.history.start({ pushState: @demos.get('isPushState')})
 
   __routeHandlers: ->
@@ -25,10 +27,24 @@ class App
       @router.on routeName, @__demoRouteFunction(route.demoClass)
 
   appIndex: =>
-    IntroView = new MenuView(el: 'body')
+    IntroView = new MenuView(el: 'body', model:@demos)
 
   __demoRouteFunction:(demoClass) =>
     =>
       View = new GlView(el: 'body', demo:new demoClass({debug:@demos.get('isDebugging')}))
+
+
+  __facitatePushState: ->
+    if @demos.get('isPushState')
+      $(document).on 'click', 'a:not([data-bypass])', (evt) =>
+        console.log 'EVT', evt
+        href = $(evt).attr('href')
+        console.log 'HREF', href
+        protocol = @protocol + '//'
+        if href.slice(protocol.length) != protocol
+          evt.preventDefault()
+          console.log '@router', @router
+          @router.navigate href, true
+
 
 app = new App()

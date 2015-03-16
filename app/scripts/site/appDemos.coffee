@@ -5,7 +5,7 @@ module.exports = Backbone.Model.extend
 
   defaults:
     isDebugging:true
-    isPushState:false
+    isPushState:true
     data:[
       {
         'url':'/basic'
