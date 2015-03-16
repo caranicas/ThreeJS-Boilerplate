@@ -8,22 +8,22 @@ module.exports = Backbone.Model.extend
     isPushState:true
     data:[
       {
-        'url':'/basic'
+        'url':'basic'
         'name':'basic'
         'demoClass':require './gl/demos/basicdemo'
       },
       {
-        'url':'/shader'
+        'url':'shader'
         'name':'shader'
         'demoClass':require  './gl/demos/shaderdemo'
       },
       {
-        'url':'/physics'
+        'url':'physics'
         'name':'physics'
         'demoClass':require './gl/demos/physidemo'
       },
       {
-        'url':'/goblin'
+        'url':'goblin'
         'name':'goblin'
         'demoClass':require './gl/demos/goblindemo'
       }

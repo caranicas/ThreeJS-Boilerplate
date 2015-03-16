@@ -33,18 +33,14 @@ class App
     =>
       View = new GlView(el: 'body', demo:new demoClass({debug:@demos.get('isDebugging')}))
 
-
   __facitatePushState: ->
     if @demos.get('isPushState')
       $(document).on 'click', 'a:not([data-bypass])', (evt) =>
-        console.log 'EVT', evt
-        href = $(evt).attr('href')
-        console.log 'HREF', href
-        protocol = @protocol + '//'
-        if href.slice(protocol.length) != protocol
-          evt.preventDefault()
-          console.log '@router', @router
-          @router.navigate href, true
-
+        href = $(evt.currentTarget)[0].href
+        host = $(evt.currentTarget)[0].host
+        split = href.split(host)
+        newPage = split[1]
+        @router.navigate newPage, {trigger: true}
+        evt.preventDefault()
 
 app = new App()
