@@ -1,6 +1,6 @@
 THREE = require 'threejs'
 Goblin = require 'goblinphysics'
-Utils = require '../utils/goblinUtils'
+Utils = require '../../utils/goblinUtils'
 
 DemoInterface = require './DemoInterface'
 

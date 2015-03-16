@@ -1,34 +1,34 @@
 
-View =  require './view.coffee'
 Backbone   = require 'backbone'
 Backbone.$ = require 'jquery'
-Router =  require './router.coffee'
+Router =  require './router'
 
-basicDemo = require './demos/basicdemo.coffee'
-physiDemo = require './demos/physidemo.coffee'
-shaderDemo = require './demos/shaderdemo.coffee'
-goblinDemo = require './demos/goblindemo.coffee'
+MenuView = require './pages/view'
+GlView =  require './gl/view'
+
+Demos = require './demos'
 
 class App
 
   isDebugging:true
 
   constructor: ->
+    @demos = new Demos()
     @router = new Router()
-    @router.on 'route:index', @appIndex
-    @router.on 'route:physics', @physIndex
-    @router.on 'route:shader', @shaderIndex
-    @router.on 'route:goblin', @gobinIndex
+    @__routeHandlers()
     Backbone.history.start()
 
-  appIndex: =>
-    view = new View(el: '#canvas-layer', demo:new basicDemo({debug:@isDebugging}))
-  physIndex: =>
-    view = new View(el: '#canvas-layer', demo:new physiDemo({debug:@isDebugging}))
-  shaderIndex: =>
-    view = new View(el: '#canvas-layer', demo:new shaderDemo({debug:@isDebugging}))
-  gobinIndex: =>
-    view = new View(el: '#canvas-layer', demo:new goblinDemo({debug:@isDebugging}))
+  __routeHandlers: ->
+    @router.on 'route:index', @appIndex
+    for route in @demos.get 'data'
+      routeName = 'route:'+ route.name
+      @router.on routeName, @__demoRouteFunction(route.demoClass)
 
+  appIndex: =>
+    IntroView = new MenuView(el: 'body')
+
+  __demoRouteFunction:(demoClass) =>
+    =>
+      View = new GlView(el: 'body', demo:new demoClass({debug:@isDebugging}))
 
 app = new App()
