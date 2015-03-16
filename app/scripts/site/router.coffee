@@ -1,16 +1,19 @@
 Backbone   = require 'backbone'
-Demos = require './demos'
 
-AppRouter = Backbone.Router.extend
+$ = require 'jquery'
 
-  constructor: ->
-    @demos = new Demos()
+class AppRouter extends Backbone.Router
+
+  constructor:(options) ->
+    super
+    @model = options.model
     @__createRoutes()
     @
 
   __createRoutes:->
     @route("", "index")
-    for link in @demos.get 'data'
-      @route("!"+link.url, link.name)
+    bang = ""
+    for link in @model.get 'data'
+      @route(bang+link.url, link.name)
 
 module.exports = AppRouter

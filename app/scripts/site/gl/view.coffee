@@ -1,13 +1,6 @@
-###*
-# The Main enterance Into my App
-#
-# @classView
-# @constructor
-#
-###
 Backbone   = require 'backbone'
 
-module.exports = Backbone.View.extend
+class GLView extends Backbone.View
   template: require './template'
 
   initialize:(options) ->
@@ -18,3 +11,6 @@ module.exports = Backbone.View.extend
     @$el.html @template
     @demo.threeInit()
     @demo.loop()
+
+
+module.exports = GLView

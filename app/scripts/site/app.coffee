@@ -1,12 +1,12 @@
 
 Backbone   = require 'backbone'
-Backbone.$ = require 'jquery'
+$ = Backbone.$ = require 'jquery'
 Router =  require './router'
 
 MenuView = require './pages/view'
 GlView =  require './gl/view'
 
-Demos = require './demos'
+Demos = require './appDemos'
 
 class App
 
@@ -14,9 +14,11 @@ class App
 
   constructor: ->
     @demos = new Demos()
-    @router = new Router()
+    @router = new Router(model:@demos)
+    console.log '@router', @router
     @__routeHandlers()
-    Backbone.history.start()
+    @__facitatePushState()
+    Backbone.history.start({ pushState: @demos.get('isPushState')})
 
   __routeHandlers: ->
     @router.on 'route:index', @appIndex
@@ -25,10 +27,20 @@ class App
       @router.on routeName, @__demoRouteFunction(route.demoClass)
 
   appIndex: =>
-    IntroView = new MenuView(el: 'body')
+    IntroView = new MenuView(el: 'body', model:@demos)
 
   __demoRouteFunction:(demoClass) =>
     =>
-      View = new GlView(el: 'body', demo:new demoClass({debug:@isDebugging}))
+      View = new GlView(el: 'body', demo:new demoClass({debug:@demos.get('isDebugging')}))
+
+  __facitatePushState: ->
+    if @demos.get('isPushState')
+      $(document).on 'click', 'a:not([data-bypass])', (evt) =>
+        href = $(evt.currentTarget)[0].href
+        host = $(evt.currentTarget)[0].host
+        split = href.split(host)
+        newPage = split[1]
+        @router.navigate newPage, {trigger: true}
+        evt.preventDefault()
 
 app = new App()
