@@ -1,8 +1,10 @@
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
+var config= require('../config').stylus;
+
 
 gulp.task('stylus', function () {
-  gulp.src('./src/styles/*.styl')
+  gulp.src(config.src)
     .pipe(stylus())
-    .pipe(gulp.dest('./build/styles'));
+    .pipe(gulp.dest(config.dest));
 });
