@@ -10,19 +10,19 @@ module.exports = Backbone.Model.extend({
       {
         'url': 'basic',
         'name': 'basic',
-        'demoClass': './scripts/app/gl/demos/basicdemo'
+        'demoClass': require('./../app/gl/demos/basicdemo')
       }, {
         'url': 'shader',
         'name': 'shader',
-        'demoClass': './scripts/app/gl/demos/shaderdemo'
+        'demoClass': require('./../app/gl/demos/shaderdemo')
       }, {
         'url': 'physics',
         'name': 'physics',
-        'demoClass': './scripts/app/gl/demos/physidemo'
+        'demoClass': require('./../app/gl/demos/physidemo')
       }, {
         'url': 'goblin',
         'name': 'goblin',
-        'demoClass': './scripts/app/gl/demos/goblindemo'
+        'demoClass': require('./../app/gl/demos/goblindemo')
       }
     ]
   }

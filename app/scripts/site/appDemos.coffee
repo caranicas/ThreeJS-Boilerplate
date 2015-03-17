@@ -15,7 +15,7 @@ module.exports = Backbone.Model.extend
       {
         'url':'shader'
         'name':'shader'
-        'demoClass':require  './gl/demos/shaderdemo'
+        'demoClass':require './gl/demos/shaderdemo'
       },
       {
         'url':'physics'

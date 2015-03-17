@@ -15,11 +15,9 @@ gulp.task('static-shared',function () {
   .pipe(gulp.dest('./build/scripts/shared/'));
 });
 
-
 gulp.task('static-assets',function () {
-  return gulp.src('./src/textures')
-  .pipe(gulp.dest('./build'));
+  return gulp.src('./src/textures/*')
+  .pipe(gulp.dest('./build/textures'));
 });
-
 
 gulp.task('statics',['static-server', 'static-assets', 'static-shared']);

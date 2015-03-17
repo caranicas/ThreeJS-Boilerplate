@@ -1,8 +1,8 @@
 
 express = require 'express'
 app = express()
-#Routes = React.createFactory(require('./scripts/shared/components/pages/pageAbout'))
-
+# RouteMod = require('./scripts/shared/appDemos')
+# console.log('ROUTE MOD', RouteMod);
 
 #ROUTES
 app.get('/', (req, res) ->
@@ -14,6 +14,14 @@ app.get('/basic', (req, res) ->
 )
 
 app.get('/shader', (req, res) ->
+  demoRequest res
+)
+
+app.get('/physics', (req, res) ->
+  demoRequest res
+)
+
+app.get('/goblin', (req, res) ->
   demoRequest res
 )
 
@@ -39,7 +47,7 @@ demoRequest = (res) ->
 
 #UTILS
 styleIncludes = ->
-  return '<link rel="stylesheet" href="styles/main.css"/>'
+  return '<link rel="stylesheet" href="styles/index.css"/>'
 
 scriptIncludes = ->
   return '<script src=//code.jquery.com/jquery-2.1.1.min.js></script>'+'<script src=/scripts/appbundle.js></script>'

@@ -12,5 +12,4 @@ class GLView extends Backbone.View
     @demo.threeInit()
     @demo.loop()
 
-
 module.exports = GLView

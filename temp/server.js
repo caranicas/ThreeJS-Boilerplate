@@ -16,6 +16,14 @@ app.get('/shader', function(req, res) {
   return demoRequest(res);
 });
 
+app.get('/physics', function(req, res) {
+  return demoRequest(res);
+});
+
+app.get('/goblin', function(req, res) {
+  return demoRequest(res);
+});
+
 app.use("/scripts", express["static"]('./build/scripts'));
 
 app.use("/styles", express["static"]('./build/styles'));
@@ -41,7 +49,7 @@ demoRequest = function(res) {
 };
 
 styleIncludes = function() {
-  return '<link rel="stylesheet" href="styles/main.css"/>';
+  return '<link rel="stylesheet" href="styles/index.css"/>';
 };
 
 scriptIncludes = function() {
