@@ -1,7 +1,7 @@
 Backbone   = require 'backbone'
 
 class GLView extends Backbone.View
-  #template: require './template'
+  template: require './template.hbs'
 
   initialize:(options) ->
     @demo  = options.demo

@@ -15,13 +15,17 @@ Backbone = require('backbone');
 module.exports = Pageview = (function(superClass) {
   extend(Pageview, superClass);
 
+  Pageview.prototype.template = require('./template.hbs');
+
   function Pageview(args) {
-    console.log('APP CON', args);
+    console.log('ARGS', args);
+    this.model = args.model;
     Pageview.__super__.constructor.apply(this, arguments);
     this.render();
   }
 
   Pageview.prototype.render = function() {
+    console.log('template', this.template);
     return this.$el.html(this.template(this.model.toJSON()));
   };
 

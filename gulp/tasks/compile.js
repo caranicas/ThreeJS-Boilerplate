@@ -8,4 +8,10 @@ gulp.task('coffee', function() {
 });
 
 
-gulp.task('compile',['coffee']);
+gulp.task('hbs', function() {
+  return gulp.src('./src/**/*.hbs')
+    .pipe(gulp.dest('./temp'));
+});
+
+
+gulp.task('compile',['coffee', 'hbs']);

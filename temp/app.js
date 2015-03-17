@@ -56,6 +56,8 @@ App = (function() {
     return (function(_this) {
       return function() {
         var View;
+        console.log('glDEMOTEST ');
+        console.log('glDEMO', demoClass);
         return View = new GlView({
           el: 'body',
           demo: new demoClass({

@@ -11,6 +11,8 @@ GLView = (function(superClass) {
     return GLView.__super__.constructor.apply(this, arguments);
   }
 
+  GLView.prototype.template = require('./template.hbs');
+
   GLView.prototype.initialize = function(options) {
     this.demo = options.demo;
     return this.render();

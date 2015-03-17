@@ -38,9 +38,9 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: './app/scripts/site/app.coffee',
+      entries: './temp/app.js',
       dest: dest+'/scripts',
-      outputName: 'app.js'
+      outputName: 'appbundle.js'
     }]
   }
 };

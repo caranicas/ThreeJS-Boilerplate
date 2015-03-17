@@ -31,6 +31,8 @@ class App
 
   __demoRouteFunction:(demoClass) =>
     =>
+      console.log 'glDEMOTEST '
+      console.log 'glDEMO', demoClass
       View = new GlView(el: 'body', demo:new demoClass({debug:@demos.get('isDebugging')}))
 
   __facitatePushState: ->
