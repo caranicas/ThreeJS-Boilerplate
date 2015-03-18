@@ -13,6 +13,7 @@
     "dotscreenshader": "https://github.com/caranicas/ThreeJS-Shaders.git#dotscreenshader",
     "rgbshiftshader": "https://github.com/caranicas/ThreeJS-Shaders.git#rgbshiftshader",
     "mirrorshader": "https://github.com/caranicas/ThreeJS-Shaders.git#mirrorshader",
+    "digitalglitch": "https://github.com/caranicas/ThreeJS-Shaders.git#digitalglitchshader",
     "stats": "https://github.com/mrdoob/stats.js.git"
   },
   "resolutions": {
