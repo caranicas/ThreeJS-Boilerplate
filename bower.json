@@ -12,6 +12,7 @@
     "effectcomposer": "https://github.com/caranicas/ThreeJS-EffectComposer.git",
     "dotscreenshader": "https://github.com/caranicas/ThreeJS-Shaders.git#dotscreenshader",
     "rgbshiftshader": "https://github.com/caranicas/ThreeJS-Shaders.git#rgbshiftshader",
+    "mirrorshader": "https://github.com/caranicas/ThreeJS-Shaders.git#mirrorshader",
     "stats": "https://github.com/mrdoob/stats.js.git"
   },
   "resolutions": {

@@ -1,15 +1,12 @@
 THREE = require 'threejs'
 
 EffectComposer = require 'effectcomposer'
-#RenderPass = require 'renderpass'
-#ShaderPass = require 'shaderpass'
 DotScreenShader = require 'dotscreenshader'
-RGBShiftShader = require 'rgbshiftshader'
 
 DemoInterface = require './DemoInterface'
 
 
-class ShaderDemo extends DemoInterface
+class DotShaderDemo extends DemoInterface
 
 
   threeInit: ->
@@ -24,12 +21,8 @@ class ShaderDemo extends DemoInterface
 
   __createShaderEffects: ->
     effect = new EffectComposer.prototype.ShaderPass( new DotScreenShader() )
-    effect.uniforms[ 'scale' ].value = 4
-    @composer.addPass( effect )
-
-    effect = new EffectComposer.prototype.ShaderPass( new RGBShiftShader())
-    effect.uniforms[ 'amount' ].value = 0.0015
     effect.renderToScreen = true
+    effect.uniforms[ 'scale' ].value = 2
     @composer.addPass( effect )
 
   __initGeometry: ->
@@ -85,4 +78,4 @@ class ShaderDemo extends DemoInterface
       mesh.rotation.x += 0.01
       mesh.rotation.y += 0.02
 
-module.exports = ShaderDemo
+module.exports = DotShaderDemo
