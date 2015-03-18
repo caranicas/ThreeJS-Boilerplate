@@ -26,6 +26,11 @@ module.exports = Backbone.Model.extend
         'demoClass':require './gl/demos/mirrorshaderdemo.coffee'
       },
       {
+        'url':'/digitalglitch'
+        'name':'digitalglitch'
+        'demoClass':require './gl/demos/digitalglitch.coffee'
+      },
+      {
         'url':'/physi'
         'name':'physi'
         'demoClass':require './gl/demos/physidemo.coffee'

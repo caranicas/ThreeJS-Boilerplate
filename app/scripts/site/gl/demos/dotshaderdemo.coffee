@@ -5,7 +5,6 @@ DotScreenShader = require 'dotscreenshader'
 
 DemoInterface = require './DemoInterface'
 
-
 class DotShaderDemo extends DemoInterface
 
 
