@@ -11,19 +11,30 @@ module.exports = Backbone.Model.extend
         'demoClass':require './gl/demos/basicdemo.coffee'
       },
       {
-        'url':'/shader'
-        'name':'shader'
-        'demoClass':require  './gl/demos/physidemo.coffee'
+        'url':'/shiftshader'
+        'name':'shiftshader'
+        'demoClass':require  './gl/demos/shiftshaderdemo.coffee'
       },
       {
-        'url':'/physics'
-        'name':'physics'
-        'demoClass':require './gl/demos/shaderdemo.coffee'
+        'url':'/dotshader'
+        'name':'dotshader'
+        'demoClass':require  './gl/demos/dotshaderdemo.coffee'
+      },
+      {
+        'url':'/mirrorshader'
+        'name':'mirrorshader'
+        'demoClass':require './gl/demos/mirrorshaderdemo.coffee'
+      },
+      {
+        'url':'/physi'
+        'name':'physi'
+        'demoClass':require './gl/demos/physidemo.coffee'
       },
       {
         'url':'/goblin'
         'name':'goblin'
         'demoClass':require './gl/demos/goblindemo.coffee'
       }
+
 
     ]
