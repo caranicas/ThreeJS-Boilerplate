@@ -1,16 +1,22 @@
 THREE = require 'threejs'
 DemoInterface = require './DemoInterface'
 
+dat = require 'dat-gui'
 class BasicDemo extends DemoInterface
+
+  LightObj:
+    lightOneColor:0x00ff00
+    lightTwoColor:0xffffff
 
   __initGeometry: ->
     @__initBoxes()
     @__floorGeometry()
+    @__initalDat()
     super
 
   __initBoxes: ->
     @geometry = new THREE.BoxGeometry( 5, 5, 5 )
-    @material = new THREE.MeshLambertMaterial( { color: 0xff00ff, wireframe: false} )
+    @material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false} )
     @mesh = new THREE.Mesh( @geometry, @material )
     @mesh.position.y = 10
     @mesh.position.x = 5
@@ -37,14 +43,36 @@ class BasicDemo extends DemoInterface
     floor.rotation.x = Math.PI / 2
     @scene.add(floor)
 
-  __initLights: ->
-    directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
-    directionalLight.position.set( -20, -20, -20)
-    @scene.add( directionalLight )
 
-    directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
-    directionalLight.position.set(20,20,20)
-    @scene.add( directionalLight )
+  __initalDat:->
+    @dat = new dat.GUI()
+    lightOneController = @dat.addColor(@LightObj, 'lightOneColor')
+    lightTwoController = @dat.addColor(@LightObj, 'lightTwoColor')
+
+    lightOneController.onChange( (value)=>
+      @__updateLightOne(value)
+    )
+
+    lightTwoController.onChange( (value)=>
+      @__updateLightTwo(value)
+    )
+
+  __updateLightOne:(value) ->
+    @directionalLightOne.color.setHex(value)
+    @
+
+  __updateLightTwo:(value) ->
+    @directionalLightTwo.color.setHex(value)
+    @
+
+  __initLights: ->
+    @directionalLightOne = new THREE.DirectionalLight( @LightObj.lightOneColor, 0.5 )
+    @directionalLightOne.position.set(-10, -10, -10)
+    @scene.add( @directionalLightOne )
+
+    @directionalLightTwo = new THREE.DirectionalLight( @LightObj.lightTwoColor, 0.5 )
+    @directionalLightTwo.position.set(10,10,10)
+    @scene.add( @directionalLightTwo )
 
   __update: ->
     for mesh in @sceneObjs
