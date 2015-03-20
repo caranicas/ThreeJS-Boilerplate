@@ -1,7 +1,6 @@
 THREE = require 'threejs'
 DemoInterface = require './DemoInterface'
 
-dat = require 'dat-gui'
 class BasicDemo extends DemoInterface
 
   LightObj:
@@ -11,7 +10,6 @@ class BasicDemo extends DemoInterface
   __initGeometry: ->
     @__initBoxes()
     @__floorGeometry()
-    @__initalDat()
     super
 
   __initBoxes: ->
@@ -43,9 +41,8 @@ class BasicDemo extends DemoInterface
     floor.rotation.x = Math.PI / 2
     @scene.add(floor)
 
-
-  __initalDat:->
-    @dat = new dat.GUI()
+  __initDat:->
+    super
     lightOneController = @dat.addColor(@LightObj, 'lightOneColor')
     lightTwoController = @dat.addColor(@LightObj, 'lightTwoColor')
 

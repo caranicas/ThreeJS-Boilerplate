@@ -3,6 +3,8 @@ window.THREE = THREE = require 'threejs'
 $ = require 'jquery'
 Orbit = require 'orbitcontrols'
 Stats  = require 'stats'
+dat = require 'dat-gui'
+
 
 class DemoInterface
 
@@ -13,13 +15,16 @@ class DemoInterface
     @debugging = arguments[0].debug
 
   threeInit: ->
+
     @__initScene()
     @__initRenderer()
     @__initCamera()
     @__initGeometry()
     @__initLights()
-    @__debugStats() if @debugging
-    @
+
+    if @debugging
+      @__debugStats()
+      @__initDat()
 
   __initScene: ->
     @scene = new THREE.Scene()
@@ -38,7 +43,7 @@ class DemoInterface
     controls.addEventListener( 'change', @render)
 
   __initGeometry: ->
-    @__axis()  if @debugging
+    @__axis() if @debugging
 
   __axis: ->
     axes = new THREE.AxisHelper(100)
@@ -60,6 +65,9 @@ class DemoInterface
     @stats.domElement.style.left = '0px'
     @stats.domElement.style.top = '0px'
     document.body.appendChild( @stats.domElement )
+
+  __initDat: ->
+    @dat = new dat.GUI()
 
   loop:->
     requestAnimationFrame =>
