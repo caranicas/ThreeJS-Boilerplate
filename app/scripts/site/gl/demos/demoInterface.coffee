@@ -13,9 +13,9 @@ class DemoInterface
 
   constructor: ->
     @debugging = arguments[0].debug
+    window.addEventListener( 'resize', @__resize, false )
 
   threeInit: ->
-
     @__initScene()
     @__initRenderer()
     @__initCamera()
@@ -81,6 +81,12 @@ class DemoInterface
     @stats.end()
 
   __update: ->
+
+  __resize: =>
+    console.log '@camera.aspect',@camera
+    @camera.aspect = window.innerWidth / window.innerHeight
+    @camera.updateProjectionMatrix()
+    @renderer.setSize( window.innerWidth, window.innerHeight )
 
 
 module.exports = DemoInterface
