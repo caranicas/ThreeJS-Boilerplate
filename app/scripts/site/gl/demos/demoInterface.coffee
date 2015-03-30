@@ -40,7 +40,6 @@ class DemoInterface
     @camera.position.y = 10
 
     controls = new Orbit(@camera)
-    controls.addEventListener( 'change', @render)
 
   __initGeometry: ->
     @__axis() if @debugging
