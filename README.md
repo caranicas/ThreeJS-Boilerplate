@@ -10,8 +10,8 @@ ThreeJS-Boilerplate
 - [Effect Composer](https://github.com/caranicas/ThreeJS-EffectComposer)
 - [Shaders](https://github.com/caranicas/ThreeJS-Shaders)
 
-###[Examples](https://github.com/caranicas/ThreeJS-Module-Examples)
-
+* * *
+####[Example Implementation](https://github.com/caranicas/ThreeJS-Module-Examples)
 * * *
 
 ####App Structure
