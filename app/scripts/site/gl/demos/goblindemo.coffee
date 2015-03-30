@@ -35,6 +35,7 @@ class GoblinDemo extends DemoInterface
     metal_material = Utils.createMaterial( 'rusted_metal', 1, 1,@renderer)
     woodbox = Utils.createBox( 1, 1, 1, 100, wood_material, true )
     woodbox.goblin.position.y = 10
+    woodbox.goblin.linear_velocity.y = 20
     @objects.push(woodbox)
     @scene.add(woodbox)
     @world.addRigidBody(woodbox.goblin)
@@ -43,6 +44,8 @@ class GoblinDemo extends DemoInterface
     metalbox = Utils.createBox( 1, 1, 1, 100, metal_material, true )
     metalbox.goblin.position.y = 14
     metalbox.goblin.position.x = 1
+    metalbox.goblin.linear_velocity.y = 10
+    console.log 'Goblin', metalbox.goblin
     @objects.push(metalbox)
     @scene.add(metalbox)
     @world.addRigidBody(metalbox.goblin)
